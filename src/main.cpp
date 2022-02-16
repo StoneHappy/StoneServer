@@ -5,6 +5,6 @@ int main()
 {
     GU::GuServer guserver;
     guserver.init();
-    GU::Log::GetInstance()->Init("test/log");
+    GU::Log::GetInstance()->Init("./server/ServerLog");
     std::cout << "hello GUServer" << std::endl;
 }
