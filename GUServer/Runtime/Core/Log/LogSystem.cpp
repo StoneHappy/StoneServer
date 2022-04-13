@@ -1,4 +1,4 @@
-#include "Log/Log.h"
+#include "Core/Log/LogSystem.h"
 #include <time.h>
 #include <string.h>
 #include <iostream>
