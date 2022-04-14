@@ -5,7 +5,7 @@
 #include <stdarg.h>
 namespace GU
 {
-    void Log::Init(const char* filename)
+    void LogSystem::Init(const char* filename)
     {
         time_t t = time(NULL);
         struct tm* sys_tm = localtime(&t);

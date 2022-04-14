@@ -1,24 +1,16 @@
 #pragma once
+#include "Core/Base/PublicSingleton.h"
 
 namespace GU
 {
-    class Log
+    class LogSystem : public PublicSingleton<LogSystem>
     {
     public:
-        static Log* GetInstance()
-        {
-            static Log instance;
-            return &instance;
-        }
-
         void Init(const char* file_name);
         
-        void WriteLog(int level, const char* format, ...);
+        void WriteLog(int level, const char* format, ...) {}
     private:
         char log_name[128];
         char dir_name[128]; //路径名
-        Log() = default;
-
-        virtual ~Log() = default;
     };
 } // namespace GU
