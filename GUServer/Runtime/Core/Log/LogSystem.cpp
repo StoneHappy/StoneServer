@@ -4,7 +4,7 @@
 #include <string.h>
 #include <iostream>
 #include <stdarg.h>
-namespace GU
+namespace Stone
 {
     void LogSystem::Init(const char* filename)
     {

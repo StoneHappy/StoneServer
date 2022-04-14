@@ -1,4 +1,4 @@
-set(TARGET_NAME GUServerRuntime)
+set(TARGET_NAME StoneServerRuntime)
 
 file(GLOB_RECURSE HEADER_FILES "*.h")
 file(GLOB_RECURSE SOURCE_FILES "*.cpp")
@@ -8,7 +8,7 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${HEADER_FILES} ${SOURCE_F
 add_library(${TARGET_NAME} ${HEADER_FILES} ${SOURCE_FILES})
 
 set_target_properties(${TARGET_NAME} PROPERTIES CXX_STANDARD 17)
-set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "GUServerRuntime")
+set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "StoneServerRuntime")
 
 # Link dependencies    
 target_link_libraries(${TARGET_NAME} PUBLIC

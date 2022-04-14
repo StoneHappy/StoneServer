@@ -1,6 +1,6 @@
 #pragma once
 #include <type_traits>
-namespace GU
+namespace Stone
 {
     template<typename T>
     class PublicSingleton

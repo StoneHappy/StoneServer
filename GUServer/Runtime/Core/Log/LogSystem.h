@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Base/PublicSingleton.h"
 
-namespace GU
+namespace Stone
 {
     class LogSystem : public PublicSingleton<LogSystem>
     {
