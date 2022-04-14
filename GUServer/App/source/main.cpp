@@ -3,6 +3,6 @@
 #include <Core/Log/LogSystem.h>
 int main()
 {
-    GU::PublicSingleton<GU::LogSystem>::getInstance().Init("test");
+    GU::PublicSingleton<GU::LogSystem>::getInstance().Init("test/test");
     std::cout << "hello GU Server" << std::endl;
 }
