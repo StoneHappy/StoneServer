@@ -1,2 +1,2 @@
-# GUServer
-顾服务器
+# StoneServer
+石头服务器
