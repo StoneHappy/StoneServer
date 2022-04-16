@@ -4,8 +4,15 @@
 #include <stdio.h>
 namespace Stone
 {
-    bool LogSystem::Init(const char* filename)
+    bool LogSystem::Init(const char* filename, int close_log, int log_buf_size, int split_lines)
     {
+        // 初始化参数设置
+        m_split_lines = split_lines;
+        m_log_buf_size = log_buf_size;
+        m_close_log = close_log;
+        m_is_initialized = true;
+        m_buff = new char[m_log_buf_size];
+
         time_t t = time(NULL);
         tm* systemtm = localtime(&t);
         tm  nowtime = *systemtm;
@@ -26,15 +33,19 @@ namespace Stone
         auto m_fp = std::fopen(log_full_name, "a");
 
         if (m_fp == NULL) {
+            m_is_initialized = false;
             return false;
         }
 
         return true;
     }
 
-    void WriteLog(int level, const char* format, ...)
+    void LogSystem::WriteLog(int level, const char* format, ...)
     {
-
+        // 如果未初始化就不操作
+        if (!m_is_initialized) {
+            return;
+        }
         char s[16] = {0};
         switch (level) {
             case 0:
