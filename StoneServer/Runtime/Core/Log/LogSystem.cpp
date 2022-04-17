@@ -52,9 +52,10 @@ namespace Stone
         struct tm my_tm = *sys_tm;
 
         // 如果未初始化就不操作
-        // if (!m_is_initialized) {
-        //     return;
-        // }
+        if (!m_is_initialized) {
+            printf("[error]: Please initialize log system!");
+            return;
+        }
         char s[16] = {0};
         switch (level) {
             case 0:
@@ -89,7 +90,6 @@ namespace Stone
         log_str = m_buf;
 
         fputs(log_str.c_str(), m_fp);
-        // fputs(m_buf, m_fp);
 
         printf("%s", m_buf);
     }

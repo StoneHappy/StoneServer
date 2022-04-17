@@ -1,11 +1,11 @@
 #include "Core/Base/PublicSingleton.h"
 #include <iostream>
 #include <Core/Log/LogSystem.h>
+#include "Core/Base/macro.h"
 int main()
 {
     Stone::PublicSingleton<Stone::LogSystem>::getInstance().Init("test", 0);
-    Stone::PublicSingleton<Stone::LogSystem>::getInstance().WriteLog(0, "%s", "sdsdd");
-    Stone::PublicSingleton<Stone::LogSystem>::getInstance().WriteLog(0, "%s", "asdsadsad");
-    Stone::PublicSingleton<Stone::LogSystem>::getInstance().WriteLog(1, "%s", "asdsadsad");
+    LOG_DEBUG("%s", "test");
+    LOG_INFO("%s", "help");
     std::cout << "hello StoneServer" << std::endl;
 }
