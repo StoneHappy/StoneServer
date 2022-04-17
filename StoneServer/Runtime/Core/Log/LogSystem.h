@@ -11,6 +11,8 @@ namespace Stone
         bool Init(const char* file_name, int close_log, int log_buf_size = 8192, int split_lines = 5000000);
         
         void WriteLog(int level, const char* format, ...);
+
+        void flush();
     private:
         char log_name[128];
         char dir_name[128]; //路径名

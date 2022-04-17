@@ -32,7 +32,7 @@ namespace Stone
             snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, nowtime.tm_year + 1900, nowtime.tm_mon + 1, nowtime.tm_mday, log_name);
         }
 
-        auto m_fp = std::fopen(log_full_name, "a");
+        m_fp = std::fopen(log_full_name, "a");
 
         if (m_fp == NULL) {
             m_is_initialized = false;
@@ -85,8 +85,19 @@ namespace Stone
         m_buf[n + m] = '\n';
         m_buf[n + m + 1] = '\0'; 
         va_end(args);
+        std::string log_str;
+        log_str = m_buf;
+
+        fputs(log_str.c_str(), m_fp);
+        // fputs(m_buf, m_fp);
 
         printf("%s", m_buf);
     }
+
+    void LogSystem::flush()
+    {
+        fflush(m_fp);
+    }
+
 
 } // namespace GU
