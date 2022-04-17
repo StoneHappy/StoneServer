@@ -1,2 +1,12 @@
 # StoneServer
-石头服务器
+
+## How to build
+```bash
+mkdir build
+
+cd build
+
+cmake ..
+
+cmake --build ./ --config Debug --target all -j 3
+```
