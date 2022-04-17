@@ -58,19 +58,19 @@ namespace Stone
         char s[16] = {0};
         switch (level) {
             case 0:
-                strcpy(s, "[debug]");
+                strcpy(s, "[debug]:");
                 break;
             case 1:
-                strcpy(s, "[info]");
+                strcpy(s, "[info]:");
                 break;
             case 2:
-                strcpy(s, "[warn]");
+                strcpy(s, "[warn]:");
                 break;
             case 3:
-                strcpy(s, "[erro]");
+                strcpy(s, "[erro]:");
                 break;
             default:
-                strcpy(s, "[info]");
+                strcpy(s, "[info]:");
                 break;
         }
         va_list args;
