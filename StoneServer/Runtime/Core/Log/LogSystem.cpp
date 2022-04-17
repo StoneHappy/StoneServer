@@ -2,6 +2,8 @@
 #include <cstring>
 #include <time.h>
 #include <stdio.h>
+#include <sys/time.h>
+#include <stdarg.h>
 namespace Stone
 {
     bool LogSystem::Init(const char* filename, int close_log, int log_buf_size, int split_lines)
@@ -11,7 +13,7 @@ namespace Stone
         m_log_buf_size = log_buf_size;
         m_close_log = close_log;
         m_is_initialized = true;
-        m_buff = new char[m_log_buf_size];
+        m_buf = new char[m_log_buf_size];
 
         time_t t = time(NULL);
         tm* systemtm = localtime(&t);
@@ -42,10 +44,17 @@ namespace Stone
 
     void LogSystem::WriteLog(int level, const char* format, ...)
     {
+
+        struct timeval now = {0, 0};
+        gettimeofday(&now, NULL);
+        time_t t = now.tv_sec;
+        struct tm *sys_tm = localtime(&t);
+        struct tm my_tm = *sys_tm;
+
         // 如果未初始化就不操作
-        if (!m_is_initialized) {
-            return;
-        }
+        // if (!m_is_initialized) {
+        //     return;
+        // }
         char s[16] = {0};
         switch (level) {
             case 0:
@@ -64,6 +73,20 @@ namespace Stone
                 strcpy(s, "[info]");
                 break;
         }
+        va_list args;
+
+        va_start(args, format);
+        //写入的具体时间内容格式
+        int n = snprintf(m_buf, 48, "%d-%02d-%02d %02d:%02d:%02d.%06ld %s ",
+                     my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday,
+                     my_tm.tm_hour, my_tm.tm_min, my_tm.tm_sec, now.tv_usec, s);
+        int m = vsnprintf(m_buf, n, format, args);
+
+        m_buf[n + m] = '\n';
+        m_buf[n + m + 1] = '\0'; 
+        va_end(args);
+
+        printf("%s", m_buf);
     }
 
 } // namespace GU

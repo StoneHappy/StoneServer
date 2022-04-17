@@ -20,6 +20,6 @@ namespace Stone
         int m_close_log;
         int m_is_initialized = false;
 
-        char* m_buff;
+        char* m_buf;
     };
 } // namespace GU
